@@ -26,6 +26,7 @@
                   type="primary"
                   @click="sumbit_order(item.orderId,item.totalPrice)"
                 >付款</el-button>
+
                 <el-button
                   disabled
                   v-else
@@ -48,7 +49,7 @@
                     <el-button
                       v-if="items.state=='0'"
                       type="primary"
-                      @click="order_apprise1(items.order_id)"
+                      @click="order_apprise1(items.project_product_id,items.order_id,item.orderId)"
                     >评价</el-button>
                     <el-button
                       disabled
@@ -58,25 +59,22 @@
                     >已评价</el-button>
                     <!-- :dialog="dialog" -->
 
-                    <el-dialog title="订单评价" :visible.sync="dialogVisible" width="30%">
+                    <!-- <el-dialog title="订单评价" :visible.sync="dialogVisible" width="30%">
                       <span>请对服务进行评价</span>
-
+                          <span>{{ items.project_price }}</span>
                       <div>
                         <span>请打分</span>
                         <el-rate v-model="value1"></el-rate>
                       </div>
-
-                      <!-- <el-form-item  label="备注"> -->
                       <span>请评价</span>
                       <el-input type="text" v-model="apprise_content"></el-input>
-                      <!-- </el-form-item> -->
                       <span slot="footer" class="dialog-footer">
-                        <!-- <el-button @click="dialogVisible = false">取 消</el-button> -->
+                      
                         <el-button type="primary" @click="order_apprise(items.project_product_id,items.order_id)">确 定</el-button>
                       </span>
-                    </el-dialog>
+                    </el-dialog> -->
                   </div>
-                  <!-- <dialog></dialog> -->
+                
                 </div>
               </div>
             </div>
@@ -84,51 +82,70 @@
         </div>
       </el-col>
     </el-row>
+      <dialog1 :dialog="dialog" @update="getPerson"></dialog1>
+      <!-- <12></12> -->
   </div>
 </template>
 
 <script>
 import Logo from "@/components/User/Logo.vue";
-// import Dialog from "@/components/User/Dialog.vue";
+import Dialog1 from "@/components/User/Dialog.vue";
 export default {
-  components: { Logo },
+  components: { Logo,Dialog1 },
   data() {
     return {
       tableDetail: [],
       tableOrder: [],
       sum: 0,
       dialogVisible: false,
-      value1: null,
-      apprise_content: ""
+
+      apprise_content: "",
+      dialog:{
+        show: false,
+        project_product_id: "",
+        order_id: "",
+        orderId:''
+      },
+      f:-1
     };
   },
   mounted() {
     this.renderData();
   },
   methods: {
-    order_apprise1()
+    order_apprise1(project_product_id,order_id,orderId)
     {
-            this.dialogVisible = true;
+     this.dialog = {
+        show: true,
+        project_product_id:project_product_id,
+        order_id:order_id,
+        orderId:orderId
+      };
+      // this.dialogVisible = true;
+      // console.log(order_id);
     },
     order_apprise(id,order_id) {
-      console.log(id);
+      console.log(order_id);
       this.dialogVisible = false;
       // this.dialog=true;
-      var params = new URLSearchParams();
-      params.append("content", this.apprise_content);
-      params.append("rate", this.value1);
-      params.append("username", this.$store.state.user.username);
-      params.append("proId", id);
-      params.append("proTypeId", '1');
-      params.append("order_id", order_id);
-      this.axios.post("/personCustom_api/PersonTp5/public/admin/index/apprise_order", params).
-      then(res=>{
-          console.log(res);
-      })
+
+      // var params = new URLSearchParams();
+      // params.append("content", this.apprise_content);
+      // params.append("rate", this.value1);
+      // params.append("username", this.$store.state.user.username);
+      // params.append("proId", id);
+      // params.append("proTypeId", '1');
+      // params.append("order_id", order_id);
+      // params.append("orderId", orderId);
+      // this.axios.post("/personCustom_api/PersonTp5/public/admin/index/apprise_order", params).
+      // then(res=>{
+      //     console.log(res);
+      // })
+
       // params.append("WIDtotal_amount", price);
 
       // console.log(this.value1);
-       this.renderData();
+      //  this.renderData();
     },
     sumbit_order(order, price) {
       // console.log(id);
@@ -165,8 +182,35 @@ export default {
           console.log(res);
           this.tableDetail = res.data.orderDetail.dataOrder;
           this.tableOrder = res.data.order.dataOrder;
-          console.log(this.tableDetail);
+          // console.log(this.tableDetail);
         });
+
+
+
+    },
+    getPerson(order_id,project_product_id,value1,apprise_content,orderId){
+      // console.log(order_id,project_product_id,value1,apprise_content);
+      // this.f=-1;
+      var params = new URLSearchParams();
+      params.append("content",apprise_content);
+      params.append("rate", value1);
+      params.append("username", this.$store.state.user.username);
+      params.append("proId", project_product_id);
+      params.append("proTypeId", '1');
+      params.append("order_id", order_id);
+      params.append("orderId", orderId);
+      this.axios.post("/personCustom_api/PersonTp5/public/admin/index/apprise_order", params).
+      then(res=>{
+      })
+
+      this.dialog = {
+        show: false,
+        project_product_id: "",
+        order_id: "",
+        orderId:''
+      };
+      this.renderData();
+
     }
   }
 };

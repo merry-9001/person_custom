@@ -51,6 +51,18 @@
           </div>
         </el-col>
       </el-row>
+
+      <el-card class="box-card">
+        <span class="title">评论区</span>
+  <div v-for="item in apprise" :key="item.appraise_id" class="text item">
+     <span class="line">评论人：{{item.username }}</span> 
+     <!-- <span class="line">评论人：{{ + item.username }}</span>  -->
+     <span class="line">评分：<el-rate disabled v-model="item.rate"></el-rate></span>
+      <span class="line">内容：{{ item.appraise_content }}</span>
+  </div>
+</el-card>
+
+
     </div>
   </div>
 </template>
@@ -64,20 +76,22 @@ export default {
       personDetail: {},
       dialogVisible: false,
       remake: "",
-      price: ""
+      price: "",
+      apprise:[]
     };
   },
   mounted() {
-    //   console.log(this.id);
+      console.log(this.id);
     this.axios
       .get(
         "/personCustom_api/PersonTp5/public/admin/index/personDetail?id=" +
           this.id
       )
       .then(res => {
-        //    console.log(res);
+           console.log(res);
         this.personDetail = res.data.data.detail;
-        console.log(this.personDetail);
+         this.apprise = res.data.apprise.apprise;
+        console.log(this.apprise);
         //    this.personData=res.data.data.personSelect;
         //  console.log(this.personData);
       });
@@ -125,6 +139,30 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.title{
+  font-size: 20px;
+  font-weight: bolder;
+}
+.line{
+  display:block;
+  padding: 5px;
+}
+  .text {
+    font-size: 14px;
+  }
+
+  .item {
+    padding: 18px 0;
+  }
+
+  .box-card {
+    width: 100%;
+  }
+
+
+
+
+
 .remake {
   padding-bottom: 10px;
   padding-top: 10px;

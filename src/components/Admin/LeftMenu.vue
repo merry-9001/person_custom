@@ -104,31 +104,18 @@ export default {
           ]
         }
       ],
-            items2: [
-       
-      
+        items2: [
         {
           icon: "s-platform",
           name: "提问回答",
           path: "info1",
           children: [
             {
-              path: "infoshow1",
-              name: "个人信息"
+              path: "question",
+              name: "提问中心"
             }
           ]
         },
-        {
-          icon: "s-tools",
-          name: "用户管理",
-          path: "info2",
-          children: [
-            {
-              path: "infoshow2",
-              name: "个人信息"
-            }
-          ]
-        }
       ],
       flag:this.$store.state.admin.isAdmin
     };
