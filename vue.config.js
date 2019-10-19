@@ -1,5 +1,5 @@
 module.exports = {
-    // publicPath: 'management',
+    // publicPath: 'person_custom',
     devServer: {
         proxy: {
             '/personCustom_api': {

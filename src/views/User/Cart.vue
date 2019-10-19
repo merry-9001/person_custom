@@ -130,7 +130,7 @@ export default {
       params.append("proId", proId);
       params.append("sum", this.sum);
       params.append("username", this.$store.state.user.username);
-      this.axios.post("/personCustom_api/PersonTp5/public/admin/index/question_submit",params)
+      this.axios.post("/personCustom_api/PersonTp5/public/admin/index/cart_submit",params)
       .then(res=>{
         // console.log(res);
         //     this.renderData();

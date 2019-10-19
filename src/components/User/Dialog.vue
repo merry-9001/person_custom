@@ -7,7 +7,7 @@
       <span>请打分</span>
       <el-rate v-model="value1"></el-rate>
     </div>
-    <span>{{dialog.order_id}}</span>
+    <!-- <span>{{dialog.order_id}}</span> -->
     <el-input type="text" v-model="apprise_content"></el-input>
     <span slot="footer" class="dialog-footer">
       <el-button type="primary" @click="onSubmit(dialog.order_id,dialog.project_product_id)">确 定</el-button>

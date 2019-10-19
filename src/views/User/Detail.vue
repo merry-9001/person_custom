@@ -55,8 +55,8 @@
       <el-card class="box-card">
         <span class="title">评论区</span>
   <div v-for="item in apprise" :key="item.appraise_id" class="text item">
-     <span class="line">评论人：{{item.username }}</span> 
-     <!-- <span class="line">评论人：{{ + item.username }}</span>  -->
+     <span class="line">评论人：{{item.nickname }}</span> 
+
      <span class="line">评分：<el-rate disabled v-model="item.rate"></el-rate></span>
       <span class="line">内容：{{ item.appraise_content }}</span>
   </div>

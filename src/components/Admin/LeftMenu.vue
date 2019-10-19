@@ -70,36 +70,40 @@ export default {
             }
           ]
         },
-        {
-          icon: "s-order",
-          name: "账号租赁",
-          path: "info",
-          children: [
-            {
-              path: "/admin/PersonCustom/2",
-              name: "个人信息"
-            }
-          ]
-        },
-        {
-          icon: "s-platform",
-          name: "提问回答",
-          path: "info1",
-          children: [
-            {
-              path: "infoshow1",
-              name: "个人信息"
-            }
-          ]
-        },
+        // {
+        //   icon: "s-order",
+        //   name: "账号租赁",
+        //   path: "info",
+        //   children: [
+        //     {
+        //       path: "/admin/PersonCustom/2",
+        //       name: "个人信息"
+        //     }
+        //   ]
+        // },
+        // {
+        //   icon: "s-platform",
+        //   name: "提问回答",
+        //   path: "info1",
+        //   children: [
+        //     {
+        //       path: "infoshow1",
+        //       name: "个人信息"
+        //     }
+        //   ]
+        // },
         {
           icon: "s-tools",
           name: "用户管理",
           path: "info2",
           children: [
             {
-              path: "infoshow2",
-              name: "个人信息"
+              path: "user",
+              name: "会员信息"
+            },
+            {
+              path: "apply",
+              name: "资质审核"
             }
           ]
         }

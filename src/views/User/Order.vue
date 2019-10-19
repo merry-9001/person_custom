@@ -123,6 +123,7 @@ export default {
       };
       // this.dialogVisible = true;
       // console.log(order_id);
+          this.renderData();
     },
     order_apprise(id,order_id) {
       console.log(order_id);
@@ -145,7 +146,7 @@ export default {
       // params.append("WIDtotal_amount", price);
 
       // console.log(this.value1);
-      //  this.renderData();
+       this.renderData();
     },
     sumbit_order(order, price) {
       // console.log(id);

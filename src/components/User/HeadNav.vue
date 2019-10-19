@@ -4,8 +4,8 @@
       <el-col :span="10">
         <div class="grid-content headwidth">
           <router-link class="headspan" to="/index" >私人订制首页&nbsp;</router-link>
-          <router-link class="headspan" to="/index1">商品介绍&nbsp;</router-link>
-          <router-link class="headspan" to="/question">我要发问</router-link>
+          <router-link class="headspan" to="/Product">商品介绍&nbsp;</router-link>
+          <router-link class="headspan" to="/Qualifications">申请资质</router-link>
         </div>
 
       </el-col>
@@ -47,9 +47,14 @@
           <router-link class="headspan" to="/login" @click.native="click">&nbsp;&nbsp;注销</router-link>
         </div>
 <el-dialog
-  title="私人订制问题回答"
+  title="私人订制"
   :visible.sync="dialogVisible"
   width="50%">
+
+  <span class="red" v-if="flag==1">您好，您的资质申请已通过，账号密码为会员账号</span>
+  <span class="red" v-else-if="flag==-1">您好，您的资质申请未通过</span>
+<br>
+<br>
   <span class="red">提问回答如下</span>
 
   <div   v-for="item in question" :key="item.question_id" class="border">
@@ -85,7 +90,8 @@ export default {
     return{
       f:0,
       dialogVisible:false,
-      question:[]
+      question:[],
+      flag:0
 
     }
   },
@@ -97,8 +103,8 @@ export default {
     click(){
           localStorage.removeItem("nickname");
           localStorage.removeItem("headphoto");
-          // localStorage.removeItem("eleToken");
-          this.$store.commit("user/NAME", { nickname: "", headphoto: ""});
+          localStorage.removeItem("username");
+          this.$store.commit("user/NAME", { nickname: "", headphoto: "", username: ""});
     },
     open(){
       var params = new URLSearchParams();
@@ -106,9 +112,10 @@ export default {
             this.axios
         .post("/personCustom_api/PersonTp5/public/admin/index/open_slove", params)
         .then(res=>{
-          // console.log(res);
+          console.log(res);
           this.question=res.data.data;
-          console.log(this.question);
+          this.flag=res.data.apply.flag;
+          // console.log(this.question);
         })
         this.dialogVisible=true;
         this.refresh();

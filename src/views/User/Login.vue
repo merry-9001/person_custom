@@ -16,7 +16,7 @@
                 <el-input v-model="formLabelAlign.name" class="input"></el-input>
               </el-form-item>
               <el-form-item label="密码" prop="password">
-                <el-input v-model="formLabelAlign.password" class="input"></el-input>
+                <el-input type="password" v-model="formLabelAlign.password" class="input"></el-input>
               </el-form-item>
               <el-form-item label="选择类型" prop="type">
                 <el-select v-model="formLabelAlign.type" placeholder="请选择" class="select">

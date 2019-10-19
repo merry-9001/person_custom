@@ -26,28 +26,20 @@
       <el-row>
         <el-col>
           <div class="contaniner">
-                    <!-- <router-link   class="city_name"> -->
-                      <!-- "" -->
-                      <!-- "/login" -->
-                      <!-- "{path:'/detail'" -->
-                      <!-- "{name:'detail',query:{id:1}}" -->
             <div @click="ToDetail(item.project_id)" to='/detail' class="min_contaniner" v-for="item in personData " :key="item.project_id">
                 <img :src="item.project_src" class="img1">
                 <span class="price">¥{{item.project_price}}</span><br>
                 <span class="name"> {{item.project_name}}</span><br>
                 <span class="num">共有{{item.project_num}}人付款</span>
             </div>
-
           </div>
         </el-col>
       </el-row>
-
-      <el-row>
+      <!-- <el-row>
         <el-col>
           <div class="col_center1">租号服务</div>
         </el-col>
       </el-row>
-
       <el-row>
         <el-col>
           <div class="contaniner">
@@ -57,9 +49,7 @@
             <div class="min_contaniner"></div>
           </div>
         </el-col>
-      </el-row>
-
-
+      </el-row> -->
             <el-row>
         <el-col>
           <div class="col_center1"></div>

@@ -6,6 +6,8 @@ import Detail from '@/views/User/Detail.vue'
 import Cart from '@/views/User/Cart.vue'
 import Order from '@/views/User/Order.vue'
 import Question from '@/views/User/Question.vue'
+import Product from '@/views/User/Product.vue'
+import Qualifications from '@/views/User/Qualifications.vue'
 export default {
     path: '/',
     component: Home,
@@ -40,6 +42,14 @@ export default {
         {
             path: 'Question',
             component: Question
+        },
+        {
+            path: 'Product',
+            component: Product
+        },
+        {
+            path: 'Qualifications',
+            component: Qualifications
         }
     ]
 }
